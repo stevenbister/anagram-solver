@@ -1,0 +1,35 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "prettier"
+  ],
+  "rules": {
+    "semi": [
+      "error",
+      "always"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "indent": [
+      2
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "bracketSpacing": true,
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 2
+      }
+    ]
+  },
+  "plugins" : [
+    "prettier"
+  ],
+  "ignorePatterns": [
+    "package.json",
+    "node_modules/"
+  ]
+}
