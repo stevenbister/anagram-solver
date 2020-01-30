@@ -31,9 +31,14 @@ const Solver = solver => {
   solve.addEventListener('click', () => getData()
     // Compare the input value with the returned data from the fetch call and print to the output <ul>
     .then(data => {
-      output.innerHTML = convertAnagramToWord(input.value, Object.keys(data))
+      const solution = convertAnagramToWord(input.value, Object.keys(data))
+
+      if (solution.length > 0) {
         // Convert filtered list into list items
-        .map(word => `<li>${word}</li>`).join('')
+        return output.innerHTML = solution.map(word => `<li>${word}</li>`).join('')
+      }
+      return output.innerHTML = '<li>There are no words</li>'
+
     })
     .catch(err => console.error(err))
   )
