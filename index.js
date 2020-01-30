@@ -2,7 +2,7 @@
 // TODO: Add a spinner or some indicator it's thinking when there's a large output (i.e. if just one letter is entered)
 // TODO: Input must only accept letters (no numbers, other characters etc.)
 
-async function getData() {
+const getData = async () => {
   const res = await fetch('https://raw.githubusercontent.com/stevenbister/anagram-solver/master/words_dictionary.json')
   const json = await res.json()
   return json
@@ -14,7 +14,12 @@ const convertAnagramToWord = (anagram, wordsList) => {
   const sortString = str => str.split('').sort().join('');
   // Loop over each of the words in the array and compare their sorted selves agains the word we want to check
   // outputting a new array of items
-  return wordsList.filter(word => sortString(word.toLowerCase()).includes(sortString(anagram.toLowerCase())))
+  return wordsList.filter(word => {
+    // Only return words that are the same length as the input
+    if (anagram.length === word.length) {
+      return sortString(word.toLowerCase()).includes(sortString(anagram.toLowerCase()))
+    }
+  })
 }
   
 const Solver = solver => {
