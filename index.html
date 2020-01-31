@@ -10,14 +10,16 @@
   <main>
     <article>
       <h1>Anagram solver</h1>
-      <div class="solver">
+
+      <form name="anagram-unscrambler" id="anagram-unscrambler">
         <label>
           Enter your anagram
           <input type="text" name="textInput">
         </label>
-        <input type="button" name="solve" value="Solve">
-        <ul class="output"></ul>
-      </div>
+        <input type="submit" name="solve" value="Solve">
+      </form>
+
+      <ul class="output"></ul>
     </article>
   </main>
   <script src="./index.js"></script>
