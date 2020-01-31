@@ -1,6 +1,10 @@
 // TODO: Could be fun to add a switch that allows users to change between any words that contain the letter(s) and strict anagrams
 // TODO: Add a spinner or some indicator it's thinking when there's a large output (i.e. if just one letter is entered)
 // TODO: Input must only accept letters (no numbers, other characters etc.)
+const solver = document.querySelector('.solver')  
+const input = solver.querySelector('[name=textInput]')
+const solve = solver.querySelector('[name=solve]')
+const output = solver.querySelector('.output')
 
 const getData = async () => {
   const res = await fetch('https://raw.githubusercontent.com/stevenbister/anagram-solver/master/words_dictionary.json')
@@ -21,27 +25,22 @@ const convertAnagramToWord = (anagram, wordsList) => {
     }
   })
 }
-  
-const Solver = solver => {
-  const input = solver.querySelector('[name=textInput]')
-  const solve = solver.querySelector('[name=solve]')
-  const output = solver.querySelector('.output')
 
-  // When button is clicked call the getData function
-  solve.addEventListener('click', () => getData()
-    // Compare the input value with the returned data from the fetch call and print to the output <ul>
-    .then(data => {
-      const solution = convertAnagramToWord(input.value, Object.keys(data))
+const handleSolution = async () => {
+  output.innerHTML = '<li>Thinking...</li>'
+  // Compare the input value with the returned data from the fetch call and print to the output <ul>
+  await getData().then(data => {
+    const solution = convertAnagramToWord(input.value, Object.keys(data))
 
-      if (solution.length > 0) {
-        // Convert filtered list into list items
-        return output.innerHTML = solution.map(word => `<li>${word}</li>`).join('')
-      }
-      return output.innerHTML = '<li>There are no words</li>'
+    if (solution.length > 0) {
+      // Convert filtered list into list items
+      return output.innerHTML = solution.map(word => `<li>${word}</li>`).join('')
+    }
+    return output.innerHTML = '<li>There are no words</li>'
 
-    })
-    .catch(err => console.error(err))
-  )
+  })
+  .catch(err => console.error(err))
 }
-
-const mySolver = Solver(document.querySelector('.solver'))
+  
+// When button is clicked call the getData function
+solve.addEventListener('click', () => handleSolution() )
