@@ -41,7 +41,7 @@ p {
   font-size: var(--global-font-size);
 }
 
-svg {
+img {
   width: 300px;
   height: auto;
 }
@@ -101,7 +101,7 @@ svg {
     justify-content: space-between;
   }
 
-  svg {
+  img {
     align-self: center;
   }
 }
@@ -111,7 +111,7 @@ svg {
     flex-flow: row nowrap;
   }
 
-  svg {
+  img {
     width: 400px;
   }
 }
