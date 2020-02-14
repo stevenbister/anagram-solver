@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Sriracha&display=swap');
+
+:root {
+  --global-padding: 2em;
+  --global-font-size: 20px;
+  --background: #fdfdfd;
+  --main-colour: #00bfa6;
+  --text-colour: #505050;
+  --font: 'Roboto', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-colour);
+  margin: 0;
+  font-family: var(--font);
+  font-size: 100%;
+}
+
+main {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--global-padding);
+}
+
+h1 {
+  --font: 'Sriracha', cursive;
+  font-family: var(--font);
+  font-size: 40px;
+  margin: 33px 0;
+}
+
+p {
+  font-size: var(--global-font-size);
+}
+
+svg {
+  width: 300px;
+  height: auto;
+}
+
+.input-group {
+  display: flex;
+}
+
+.anagram-container {
+  flex: 0 1 50%;
+}
+
+.anagram-unscrambler {
+  font-size: var(--global-font-size);
+  display: flex;
+  flex-flow: column;
+}
+
+.anagram-unscrambler label {
+  margin-bottom: 0.5em;
+}
+
+.anagram-unscrambler input[type="text"] {
+  background: #f2f2f2;
+  border: none;
+  border-bottom: solid 2px var(--main-colour);
+  color: inherit;
+  font-size: inherit;
+  padding: 0.5em;
+  flex: 1 0 auto;
+}
+
+.anagram-unscrambler button {
+  border: solid 1px var(--main-colour);
+  background: var(--main-colour);
+  color: var(--background);
+  font-size: inherit;
+}
+
+.output {
+  padding: 0;
+  list-style: none;
+  font-size: var(--global-font-size);
+}
+
+.output li {
+  padding: 0.5em;
+}
+
+.output li:nth-child(2n) {
+  background: #f2f2f2;
+}
+
+@media screen and (max-width: 640px) {
+  main {
+    min-height: 100vh;
+    justify-content: space-between;
+  }
+
+  svg {
+    align-self: center;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  main {
+    flex-flow: row nowrap;
+  }
+
+  svg {
+    width: 400px;
+  }
+}
