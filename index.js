@@ -1,27 +1,10 @@
 // TODO: Could be fun to add a switch that allows users to change between any words that contain the letter(s) and strict anagrams
 // TODO: Input must only accept letters (no numbers, other characters etc.)
+import { getData } from './api'
+import { convertAnagramToWord } from './helpers'
+
 const form = document.querySelector('#anagram-unscrambler')
 const output = document.querySelector('.output')
-
-const getData = async () => {
-  const res = await fetch('https://raw.githubusercontent.com/stevenbister/anagram-solver/master/words_dictionary.json')
-  const json = await res.json()
-  return json
-}
-
-const convertAnagramToWord = (anagram, wordsList) => {
-  // To start with we need to order all of the strings so they match
-  // Split them into an array, sort, and join them back together
-  const sortString = str => str.split('').sort().join('');
-  // Loop over each of the words in the array and compare their sorted selves agains the word we want to check
-  // outputting a new array of items
-  return wordsList.filter(word => {
-    // Only return words that are the same length as the input
-    if (anagram.length === word.length) {
-      return sortString(word.toLowerCase()).includes(sortString(anagram.toLowerCase()))
-    }
-  })
-}
 
 const handleSubmit = async (e) => {
   e.preventDefault()
@@ -41,6 +24,6 @@ const handleSubmit = async (e) => {
   })
   .catch(err => console.error(err))
 }
-  
+
 // When button is clicked call the getData function
 form.addEventListener('submit', (e) => handleSubmit(e) )
